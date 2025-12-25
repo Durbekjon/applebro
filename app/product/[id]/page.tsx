@@ -17,7 +17,7 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
   const relatedProducts = products.filter(p => p.id !== product.id).slice(0, 4);
 
   return (
-    <div className="min-h-screen py-20">
+    <div className="min-h-screen px-8">
       <div className="max-w-7xl mx-auto px-4">
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-sm text-gray-400 mb-8">
