@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { products } from '@/data/products';
 import ProductCard from '@/components/ui/ProductCard';
 import Button from '@/components/ui/Button';
+import Link from 'next/link';
 
 export default function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = React.use(params);
@@ -206,9 +207,11 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
 
             {/* Action Buttons - Compact Scale */}
             <div className="flex items-center gap-4">
-              <button className="flex-grow h-16 bg-gradient-to-r from-[#8E54E9] to-[#9B6DF1] hover:brightness-110 active:scale-[0.98] text-white rounded-[20px] text-xl font-bold font-travels transition-all shadow-lg shadow-purple-900/20">
+                <button className="flex-grow h-16 bg-gradient-to-r from-[#8E54E9] to-[#9B6DF1] hover:brightness-110 active:scale-[0.98] text-white rounded-[20px] text-xl font-bold font-travels transition-all shadow-lg shadow-purple-900/20">
+              <Link href="/checkout">
                 Купить в один клик
-              </button>
+              </Link>
+                </button>
               <button className="w-16 h-16 rounded-full bg-[#8E54E9]/20 border border-[#8E54E9]/30 flex items-center justify-center text-[#8E54E9] hover:bg-[#8E54E9]/30 transition-all group">
                 <svg className="w-6 h-6 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />

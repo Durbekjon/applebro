@@ -1,10 +1,42 @@
 'use client';
 
+import { useState, useMemo } from 'react';
 import CategoryProductCard from '@/components/ui/CategoryProductCard';
 import { products } from '@/data/products';
 
 
 export default function CategoriesPage() {
+  const [selectedTypes, setSelectedTypes] = useState<string[]>(['Mac', 'iPad']);
+  const [selectedColors, setSelectedColors] = useState<string[]>(['Midnight']);
+  const [selectedCapacities, setSelectedCapacities] = useState<string[]>(['256 GB']);
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 32406500]);
+
+  const toggleFilter = (value: string, current: string[], setter: (v: string[]) => void) => {
+    if (current.includes(value)) {
+      setter(current.filter(item => item !== value));
+    } else {
+      setter([...current, value]);
+    }
+  };
+
+  const clearAllFilters = () => {
+    setSelectedTypes([]);
+    setSelectedColors([]);
+    setSelectedCapacities([]);
+    setPriceRange([0, 32406500]);
+  };
+
+  const activeFilters = useMemo(() => {
+    const filters = [
+      ...selectedTypes,
+      ...selectedColors,
+      ...selectedCapacities
+    ];
+    if (priceRange[0] > 0 || priceRange[1] < 32406500) {
+      filters.push(`${new Intl.NumberFormat('ru-RU').format(priceRange[0])} - ${new Intl.NumberFormat('ru-RU').format(priceRange[1])} сум`);
+    }
+    return filters;
+  }, [selectedTypes, selectedColors, selectedCapacities, priceRange]);
 
   return (
     <div className="min-h-screen">
@@ -41,25 +73,30 @@ export default function CategoriesPage() {
           {/* Sidebar Filters */}
           <aside className="lg:col-span-1 space-y-6">
             {/* Active Filters Header */}
-            <div className="bg-[#161616] rounded-[40px] p-6 md:p-8 border border-white/5">
+            <div className={`bg-[#161616] rounded-[40px] p-6 md:p-8 border border-white/5 transition-all duration-500 ${activeFilters.length > 0 ? 'opacity-100 translate-y-0' : 'opacity-50 pointer-events-none'}`}>
               <h3 className="text-xl font-bold font-travels text-[#DFDFDF] mb-6">Фильтрация</h3>
               <div className="flex flex-wrap gap-2 mb-6">
-                {['iPad', 'Mac', 'Midnight'].map((tag) => (
-                  <div key={tag} className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full text-sm text-[#DFDFDF] border border-white/5 transition-colors hover:bg-white/15 cursor-pointer">
+                {activeFilters.map((tag) => (
+                  <div 
+                    key={tag} 
+                    onClick={() => {
+                      if (selectedTypes.includes(tag)) toggleFilter(tag, selectedTypes, setSelectedTypes);
+                      else if (selectedColors.includes(tag)) toggleFilter(tag, selectedColors, setSelectedColors);
+                      else if (selectedCapacities.includes(tag)) toggleFilter(tag, selectedCapacities, setSelectedCapacities);
+                    }}
+                    className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full text-sm text-[#DFDFDF] border border-white/5 transition-colors hover:bg-white/15 cursor-pointer group"
+                  >
                     <span>{tag}</span>
-                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-3 h-3 text-[#DFDFDF]/40 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
                     </svg>
                   </div>
                 ))}
-                <div className="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full text-sm text-[#DFDFDF] border border-white/5 transition-colors hover:bg-white/15 cursor-pointer">
-                  <span>0 - 32 406 500 сум</span>
-                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </div>
               </div>
-              <button className="flex items-center gap-2 text-[#DFDFDF]/40 text-sm hover:text-[#DFDFDF] transition-colors">
+              <button 
+                onClick={clearAllFilters}
+                className="flex items-center gap-2 text-[#DFDFDF]/40 text-sm hover:text-[#DFDFDF] transition-colors"
+              >
                 <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
                 </svg>
@@ -79,15 +116,19 @@ export default function CategoriesPage() {
               </div>
               <div className="space-y-4">
                 {['Mac', 'iPhone', 'Watch', 'iPad', 'AirPods', 'Vision Pro', 'Apple TV', 'Home Pod', 'Accessories'].map((type) => {
-                  const isSelected = type === 'Mac' || type === 'iPad';
+                  const isSelected = selectedTypes.includes(type);
                   return (
-                    <label key={type} className="flex items-center justify-between cursor-pointer group">
+                    <label 
+                      key={type} 
+                      className="flex items-center justify-between cursor-pointer group"
+                      onClick={() => toggleFilter(type, selectedTypes, setSelectedTypes)}
+                    >
                       <span className={`text-xl font-medium font-travels transition-colors ${isSelected ? 'text-[#DFDFDF]' : 'text-[#DFDFDF]/30 group-hover:text-[#DFDFDF]'}`}>
                         {type}
                       </span>
                       <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${isSelected ? 'bg-transparent border-[#DFDFDF]' : 'border-white/10'}`}>
                         {isSelected && (
-                          <svg className="w-4 h-4 text-[#DFDFDF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-4 h-4 text-[#DFDFDF] animate-in zoom-in duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                           </svg>
                         )}
@@ -110,14 +151,85 @@ export default function CategoriesPage() {
               </div>
               <div className="space-y-6">
                 <div className="flex justify-between text-sm text-[#DFDFDF] font-medium font-travels">
-                  <span>0 сум</span>
+                  <span>{new Intl.NumberFormat('ru-RU').format(priceRange[0])} сум</span>
                   <span className="text-[#DFDFDF]/30">-</span>
-                  <span>32 406 500 сум</span>
+                  <span>{new Intl.NumberFormat('ru-RU').format(priceRange[1])} сум</span>
                 </div>
-                <div className="relative h-1 bg-white/10 rounded-full">
-                  <div className="absolute left-0 right-1/4 h-full bg-[#A876D8] rounded-full" />
-                  <div className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-[#A876D8] rounded-full shadow-lg cursor-pointer" />
-                  <div className="absolute left-[75%] top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-lg cursor-pointer" />
+                <div 
+                  className="relative h-1 bg-white/10 rounded-full select-none touch-none"
+                  ref={(el) => {
+                    if (!el) return;
+                    const rect = el.getBoundingClientRect();
+                    // Store rect for drag calculations
+                    (el as any)._rect = rect;
+                  }}
+                >
+                  <div 
+                    className="absolute h-full bg-[#A876D8] rounded-full" 
+                    style={{
+                      left: `${(priceRange[0] / 32406500) * 100}%`,
+                      right: `${100 - (priceRange[1] / 32406500) * 100}%`
+                    }}
+                  />
+                  
+                  {/* Min Thumb */}
+                  <div 
+                    className="absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-[#A876D8] rounded-full shadow-lg cursor-grab active:cursor-grabbing active:scale-125 transition-transform z-10"
+                    style={{ left: `${(priceRange[0] / 32406500) * 100}%` }}
+                    onMouseDown={(e) => {
+                      e.preventDefault();
+                      const slider = e.currentTarget.parentElement!;
+                      const rect = slider.getBoundingClientRect();
+                      
+                      const handleMouseMove = (moveEvent: MouseEvent) => {
+                        const bgRect = slider.getBoundingClientRect();
+                        let percentage = (moveEvent.clientX - bgRect.left) / bgRect.width;
+                        percentage = Math.max(0, Math.min(percentage, 1));
+                        
+                        const newValue = Math.round(percentage * 32406500);
+                        if (newValue < priceRange[1] - 1000000) { // Min separation
+                           setPriceRange(prev => [Math.max(0, newValue), prev[1]]);
+                        }
+                      };
+                      
+                      const handleMouseUp = () => {
+                        document.removeEventListener('mousemove', handleMouseMove);
+                        document.removeEventListener('mouseup', handleMouseUp);
+                      };
+                      
+                      document.addEventListener('mousemove', handleMouseMove);
+                      document.addEventListener('mouseup', handleMouseUp);
+                    }}
+                  />
+                  
+                  {/* Max Thumb */}
+                  <div 
+                    className="absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-lg cursor-grab active:cursor-grabbing active:scale-125 transition-transform z-10"
+                    style={{ left: `${(priceRange[1] / 32406500) * 100}%` }}
+                    onMouseDown={(e) => {
+                      e.preventDefault();
+                      const slider = e.currentTarget.parentElement!;
+                      
+                      const handleMouseMove = (moveEvent: MouseEvent) => {
+                        const bgRect = slider.getBoundingClientRect();
+                        let percentage = (moveEvent.clientX - bgRect.left) / bgRect.width;
+                        percentage = Math.max(0, Math.min(percentage, 1));
+                        
+                        const newValue = Math.round(percentage * 32406500);
+                        if (newValue > priceRange[0] + 1000000) { // Min separation
+                           setPriceRange(prev => [prev[0], Math.min(32406500, newValue)]);
+                        }
+                      };
+                      
+                      const handleMouseUp = () => {
+                        document.removeEventListener('mousemove', handleMouseMove);
+                        document.removeEventListener('mouseup', handleMouseUp);
+                      };
+                      
+                      document.addEventListener('mousemove', handleMouseMove);
+                      document.addEventListener('mouseup', handleMouseUp);
+                    }}
+                  />
                 </div>
               </div>
             </div>
@@ -142,9 +254,13 @@ export default function CategoriesPage() {
                   { name: 'White Titanium', color: '#f2f1ed' },
                   { name: 'Black Titanium', color: '#434344' },
                 ].map((color) => {
-                  const isSelected = color.name === 'Midnight';
+                  const isSelected = selectedColors.includes(color.name);
                   return (
-                    <label key={color.name} className="flex items-center justify-between cursor-pointer group">
+                    <label 
+                      key={color.name} 
+                      className="flex items-center justify-between cursor-pointer group"
+                      onClick={() => toggleFilter(color.name, selectedColors, setSelectedColors)}
+                    >
                       <div className="flex items-center gap-4">
                         <div 
                           className="w-6 h-6 rounded-full border border-white/10" 
@@ -156,7 +272,7 @@ export default function CategoriesPage() {
                       </div>
                       <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${isSelected ? 'bg-transparent border-[#DFDFDF]' : 'border-white/10'}`}>
                         {isSelected && (
-                          <svg className="w-4 h-4 text-[#DFDFDF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-4 h-4 text-[#DFDFDF] animate-in zoom-in duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                           </svg>
                         )}
@@ -179,15 +295,19 @@ export default function CategoriesPage() {
               </div>
               <div className="space-y-4">
                 {['256 GB', '512 GB', '1 TB'].map((cap) => {
-                  const isSelected = cap === '256 GB';
+                  const isSelected = selectedCapacities.includes(cap);
                   return (
-                    <label key={cap} className="flex items-center justify-between cursor-pointer group">
+                    <label 
+                      key={cap} 
+                      className="flex items-center justify-between cursor-pointer group"
+                      onClick={() => toggleFilter(cap, selectedCapacities, setSelectedCapacities)}
+                    >
                       <span className={`text-xl font-medium font-travels transition-colors ${isSelected ? 'text-[#DFDFDF]' : 'text-[#DFDFDF]/30 group-hover:text-[#DFDFDF]'}`}>
                         {cap}
                       </span>
                       <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${isSelected ? 'bg-transparent border-[#DFDFDF]' : 'border-white/10'}`}>
                         {isSelected && (
-                          <svg className="w-4 h-4 text-[#DFDFDF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-4 h-4 text-[#DFDFDF] animate-in zoom-in duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                           </svg>
                         )}

@@ -85,8 +85,8 @@ export default function Footer() {
                 </svg>
               </a>
             </div>
-            <button className="mt-6 w-full bg-gradient-to-r from-purple-600 to-purple-500 text-white px-6 py-2.5 rounded-full text-sm font-medium hover:from-purple-700 hover:to-purple-600 transition-all">
-              Связаться с нами
+            <button className="mt-6 w-full bg-gradient-to-r from-[#6B2DE3] to-[#C292C9] text-[#DFDFDF] px-6 py-2.5 rounded-full text-sm font-medium hover:from-purple-700 hover:to-purple-600 transition-all">
+              Вам перезвонить?
             </button>
           </div>
         </div>
