@@ -12,23 +12,23 @@ const categoriesMap = {
 
 export default function PopularCategories() {
   return (
-    <section className="py-32 bg-[#101010]">
+    <section className="py-20 bg-[#101010]">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-center justify-start mb-20 gap-x-12 gap-y-4">
-          <h2 className="text-[77px] md:text-7xl font-bold font-travels text-[#DFDFDF] flex items-center gap-4 whitespace-nowrap">
+        <div className="flex flex-col md:flex-row md:items-center justify-start mb-12 gap-x-12 gap-y-4">
+          <h2 className="text-[50px] md:text-6xl font-bold font-travels text-[#DFDFDF] flex items-center gap-4 whitespace-nowrap">
             Популярные категории 
-            <span className="inline-block text-[#DFDFDF]/10 text-6xl md:text-8xl font-extralight transform -translate-y-2 select-none">
+            <span className="inline-block text-[#DFDFDF]/10 text-5xl md:text-7xl font-extralight transform -translate-y-2 select-none">
               \
             </span>
           </h2>
-          <p className="text-[#DFDFDF]/30 text-lg md:text-2xl max-w-[320px] leading-tight font-light md:pt-4">
+          <p className="text-[#DFDFDF]/30 text-base md:text-xl max-w-[320px] leading-tight font-light md:pt-4">
             Все товары которые есть у нас в данный момент
           </p>
         </div>
 
         {/* Masonry-style Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 auto-rows-[280px] md:auto-rows-[340px] gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-12 auto-rows-[240px] md:auto-rows-[300px] gap-6">
           {/* Row 1 & 2 Left */}
           <div className="md:col-span-6 md:row-span-1">
             <CategoryCard category={categoriesMap.mac} variant="horizontal" />

@@ -18,7 +18,7 @@ export default function HeroSection({
   subtitle = 'Добро пожаловать в мир',
   subtitleHighlight = 'Apple',
   buttonText = 'Посмотреть каталог',
-  buttonLink,
+  buttonLink = '/categories?cat=iphone',
   backgroundImage,
   leftText = 'Приветствуем вас в интернет-магазине оригинальной техники и аксессуаров от Apple - месте, где качество, инновации и стиль встречаются.',
   rightText = 'Присоединяйтесь к семье Apple уже сегодня и ощутите настоящую силу инноваций!',
@@ -27,14 +27,16 @@ export default function HeroSection({
 
   return (
     <main
-      className="w-full max-w-[1568px] h-auto min-h-[600px] md:h-[976px] rounded-[50px]  flex flex-col items-center justify-center relative overflow-hidden px-4 py-8 md:py-20"
+      className='p-8 '
+    >
+      <div
+      className="max-w-7xl mx-auto px-4 rounded-[50px]  flex flex-col items-center justify-center relative overflow-hidden px-4 py-8 md:py-16"
       style={{
         background: '#1a1a1a',
         backgroundImage: `radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)`,
         backgroundSize: '20px 20px',
         backgroundPosition: '0 0',
-      }}
-    >
+      }}>
       <div
         className="absolute inset-0 flex items-center justify-center pointer-events-none"
         style={{
@@ -48,13 +50,13 @@ export default function HeroSection({
 
       <div className="w-full relative z-10">
         {/* Top Section - Heading, Subheading, Button */}
-        <div className="flex flex-col items-center text-center mb-4 -mt-8 md:-mt-12 lg:-mt-16">
+        <div className="flex flex-col items-center text-center mb-4 -mt-8 md:-mt-12 lg:-mt-16 pt-8">
           {/* Main Heading */}
           <h1
             className="
               mb-2 md:mb-4 select-none uppercase text-white
               font-extrabold
-              text-[48px] sm:text-[64px] md:text-[96px] lg:text-[128px]
+              text-[40px] sm:text-[56px] md:text-[80px] lg:text-[100px]
               leading-[0.9]
               tracking-[0]
               px-4
@@ -70,9 +72,9 @@ export default function HeroSection({
           {/* Subheading */}
           <p
             className="
-              mb-4 md:mb-8 text-white
+              mb-4 md:mb-6 text-white
               font-medium
-              text-[20px] sm:text-[28px] md:text-[36px] lg:text-[40px]
+              text-[18px] sm:text-[24px] md:text-[30px] lg:text-[32px]
               leading-[0.9]
               tracking-[0]
               text-center
@@ -100,10 +102,10 @@ export default function HeroSection({
             <Link href={buttonLink}>
               <Button
                 className="
-                  hover:opacity-90 transition-opacity mb-8 md:mb-16
-                  w-[324px] h-[64px]
-                  rounded-[20px]
-                  px-[80px] py-[20px]
+                  hover:opacity-90 transition-opacity mb-8 md:mb-12
+                  w-full h-[56px]
+                  rounded-[18px]
+                  px-[60px] py-[8px]
                   flex justify-center items-center
                 "
                 style={{
@@ -191,6 +193,7 @@ export default function HeroSection({
               {rightText}
             </p>
           </div>
+        </div>
         </div>
       </div>
     </main>

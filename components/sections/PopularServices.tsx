@@ -23,27 +23,27 @@ const services = [
 
 export default function PopularServices() {
   return (
-    <section className="py-24 bg-[#101010]">
+    <section className="py-12 bg-[#101010]">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-center justify-start mb-16 gap-x-12 gap-y-4">
-          <h2 className="text-5xl md:text-7xl font-bold font-travels text-[#DFDFDF] flex items-center gap-4 whitespace-nowrap">
+        <div className="flex flex-col md:flex-row md:items-center justify-start mb-8 gap-x-8 gap-y-2">
+          <h2 className="text-3xl md:text-5xl font-bold font-travels text-[#DFDFDF] flex items-center gap-3 whitespace-nowrap">
             Популярные услуги 
-            <span className="inline-block text-[#DFDFDF]/10 text-6xl md:text-9xl font-extralight transform -translate-y-2 select-none">
+            <span className="inline-block text-[#DFDFDF]/10 text-4xl md:text-6xl font-extralight transform -translate-y-1 select-none">
               \
             </span>
           </h2>
-          <p className="text-[#DFDFDF]/30 text-lg md:text-2xl max-w-[320px] leading-tight font-light md:pt-4">
+          <p className="text-[#DFDFDF]/30 text-sm md:text-lg max-w-[280px] leading-tight font-light md:pt-2">
             Для Вас мы стараемся!
           </p>
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {services.map((service, index) => (
             <div
               key={index}
-              className={`relative rounded-[40px] p-8 md:p-10 flex flex-col h-[650px] transition-all duration-500 border border-white/5
+              className={`relative rounded-[40px] p-6 md:p-8 flex flex-col h-[500px] transition-all duration-500 border border-white/5
                 ${service.isPurple ? 'bg-[#A876D8]' : 'bg-[#161616]'} group`}
             >
               {/* Dot Pattern for Dark Cards */}
@@ -56,7 +56,7 @@ export default function PopularServices() {
 
               {/* Header: Title and Arrow */}
               <div className="relative z-10 flex justify-between items-start mb-auto">
-                <h3 className={`text-2xl md:text-3xl font-bold font-travels leading-tight tracking-tight
+                <h3 className={`text-xl md:text-2xl font-bold font-travels leading-tight tracking-tight
                   ${service.isPurple ? 'text-white' : 'text-[#DFDFDF]'}`}>
                   {service.title}
                 </h3>
@@ -76,7 +76,7 @@ export default function PopularServices() {
 
               {/* Description */}
               <div className="relative z-10 mt-auto mb-10">
-                <p className={`text-sm md:text-base leading-relaxed font-medium opacity-60
+                <p className={`text-xs md:text-sm leading-relaxed font-medium opacity-60
                   ${service.isPurple ? 'text-white' : 'text-[#DFDFDF]'}`}>
                   {service.description}
                 </p>
