@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="bg-black border-t border-gray-800 mt-20">
+    <footer>
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
           {/* Company Info */}
@@ -11,11 +11,11 @@ export default function Footer() {
               <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
               </svg>
-              <span className="font-semibold">AppleBro.uz</span>
+              <span className="font-semibold">Product.uz</span>
             </div>
             <p className="text-sm text-gray-400 mb-4">
               Интернет-магазины<br />
-              AppleBro.uz<br />
+              Product.uz<br />
               ИНН 123456789
             </p>
           </div>
@@ -92,7 +92,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-sm text-gray-400">
-          <p>Интернет-магазины AppleBro.uz. Все права защищены.</p>
+          <p>Durbek Saydaliyev - @kydanza</p>
         </div>
       </div>
     </footer>

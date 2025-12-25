@@ -15,7 +15,7 @@ export default function CategoriesPage() {
   const [selectedFilters, setSelectedFilters] = useState<Record<string, string[]>>({});
 
   return (
-    <div className="min-h-screen py-20">
+    <div className="min-h-screen">
       <div className="max-w-7xl mx-auto px-4">
         <h1 className="text-5xl font-bold mb-12">
           Категории <span className="text-purple-500">\</span>
