@@ -27,7 +27,7 @@ export default function HeroSection({
 
   return (
     <main
-      className="w-full max-w-[1568px] h-auto min-h-[600px] md:h-[976px] rounded-[50px] m-auto flex flex-col items-center justify-center relative overflow-hidden px-4 py-8 md:py-20"
+      className="w-full max-w-[1568px] h-auto min-h-[600px] md:h-[976px] rounded-[50px]  flex flex-col items-center justify-center relative overflow-hidden px-4 py-8 md:py-20"
       style={{
         background: '#1a1a1a',
         backgroundImage: `radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)`,
