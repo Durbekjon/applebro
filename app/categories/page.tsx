@@ -9,6 +9,7 @@ export default function CategoriesPage() {
   const [selectedTypes, setSelectedTypes] = useState<string[]>(['Mac', 'iPad']);
   const [selectedColors, setSelectedColors] = useState<string[]>(['Midnight']);
   const [selectedCapacities, setSelectedCapacities] = useState<string[]>(['256 GB']);
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 32406500]);
 
   const toggleFilter = (value: string, current: string[], setter: (v: string[]) => void) => {
     if (current.includes(value)) {
@@ -22,13 +23,20 @@ export default function CategoriesPage() {
     setSelectedTypes([]);
     setSelectedColors([]);
     setSelectedCapacities([]);
+    setPriceRange([0, 32406500]);
   };
 
-  const activeFilters = useMemo(() => [
-    ...selectedTypes,
-    ...selectedColors,
-    ...selectedCapacities
-  ], [selectedTypes, selectedColors, selectedCapacities]);
+  const activeFilters = useMemo(() => {
+    const filters = [
+      ...selectedTypes,
+      ...selectedColors,
+      ...selectedCapacities
+    ];
+    if (priceRange[0] > 0 || priceRange[1] < 32406500) {
+      filters.push(`${new Intl.NumberFormat('ru-RU').format(priceRange[0])} - ${new Intl.NumberFormat('ru-RU').format(priceRange[1])} сум`);
+    }
+    return filters;
+  }, [selectedTypes, selectedColors, selectedCapacities, priceRange]);
 
   return (
     <div className="min-h-screen">
@@ -143,14 +151,85 @@ export default function CategoriesPage() {
               </div>
               <div className="space-y-6">
                 <div className="flex justify-between text-sm text-[#DFDFDF] font-medium font-travels">
-                  <span>0 сум</span>
+                  <span>{new Intl.NumberFormat('ru-RU').format(priceRange[0])} сум</span>
                   <span className="text-[#DFDFDF]/30">-</span>
-                  <span>32 406 500 сум</span>
+                  <span>{new Intl.NumberFormat('ru-RU').format(priceRange[1])} сум</span>
                 </div>
-                <div className="relative h-1 bg-white/10 rounded-full">
-                  <div className="absolute left-0 right-1/4 h-full bg-[#A876D8] rounded-full" />
-                  <div className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-[#A876D8] rounded-full shadow-lg cursor-pointer" />
-                  <div className="absolute left-[75%] top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-lg cursor-pointer" />
+                <div 
+                  className="relative h-1 bg-white/10 rounded-full select-none touch-none"
+                  ref={(el) => {
+                    if (!el) return;
+                    const rect = el.getBoundingClientRect();
+                    // Store rect for drag calculations
+                    (el as any)._rect = rect;
+                  }}
+                >
+                  <div 
+                    className="absolute h-full bg-[#A876D8] rounded-full" 
+                    style={{
+                      left: `${(priceRange[0] / 32406500) * 100}%`,
+                      right: `${100 - (priceRange[1] / 32406500) * 100}%`
+                    }}
+                  />
+                  
+                  {/* Min Thumb */}
+                  <div 
+                    className="absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-[#A876D8] rounded-full shadow-lg cursor-grab active:cursor-grabbing active:scale-125 transition-transform z-10"
+                    style={{ left: `${(priceRange[0] / 32406500) * 100}%` }}
+                    onMouseDown={(e) => {
+                      e.preventDefault();
+                      const slider = e.currentTarget.parentElement!;
+                      const rect = slider.getBoundingClientRect();
+                      
+                      const handleMouseMove = (moveEvent: MouseEvent) => {
+                        const bgRect = slider.getBoundingClientRect();
+                        let percentage = (moveEvent.clientX - bgRect.left) / bgRect.width;
+                        percentage = Math.max(0, Math.min(percentage, 1));
+                        
+                        const newValue = Math.round(percentage * 32406500);
+                        if (newValue < priceRange[1] - 1000000) { // Min separation
+                           setPriceRange(prev => [Math.max(0, newValue), prev[1]]);
+                        }
+                      };
+                      
+                      const handleMouseUp = () => {
+                        document.removeEventListener('mousemove', handleMouseMove);
+                        document.removeEventListener('mouseup', handleMouseUp);
+                      };
+                      
+                      document.addEventListener('mousemove', handleMouseMove);
+                      document.addEventListener('mouseup', handleMouseUp);
+                    }}
+                  />
+                  
+                  {/* Max Thumb */}
+                  <div 
+                    className="absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-lg cursor-grab active:cursor-grabbing active:scale-125 transition-transform z-10"
+                    style={{ left: `${(priceRange[1] / 32406500) * 100}%` }}
+                    onMouseDown={(e) => {
+                      e.preventDefault();
+                      const slider = e.currentTarget.parentElement!;
+                      
+                      const handleMouseMove = (moveEvent: MouseEvent) => {
+                        const bgRect = slider.getBoundingClientRect();
+                        let percentage = (moveEvent.clientX - bgRect.left) / bgRect.width;
+                        percentage = Math.max(0, Math.min(percentage, 1));
+                        
+                        const newValue = Math.round(percentage * 32406500);
+                        if (newValue > priceRange[0] + 1000000) { // Min separation
+                           setPriceRange(prev => [prev[0], Math.min(32406500, newValue)]);
+                        }
+                      };
+                      
+                      const handleMouseUp = () => {
+                        document.removeEventListener('mousemove', handleMouseMove);
+                        document.removeEventListener('mouseup', handleMouseUp);
+                      };
+                      
+                      document.addEventListener('mousemove', handleMouseMove);
+                      document.addEventListener('mouseup', handleMouseUp);
+                    }}
+                  />
                 </div>
               </div>
             </div>
