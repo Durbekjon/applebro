@@ -14,7 +14,7 @@ interface HeroSectionProps {
 }
 
 export default function HeroSection({
-  title = 'APPLEBRO',
+  title = 'PRO DUCT',
   subtitle = 'Добро пожаловать в мир',
   subtitleHighlight = 'Apple',
   buttonText = 'Посмотреть каталог',
