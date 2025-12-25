@@ -2,10 +2,13 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import CartDrawer from '../ui/CartDrawer';
+import SearchModal from '../ui/SearchModal';
 
 export default function Header() {
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   return (
     <header className="p-8">
@@ -48,7 +51,10 @@ export default function Header() {
 
           {/* Right Icons */}
           <div className="flex items-center gap-4">
-            <button className="w-10 h-10 rounded-full flex items-center justify-center text-gray-300 hover:text-white hover:bg-white/5 transition-all">
+            <button 
+              onClick={() => setIsSearchOpen(true)}
+              className="w-10 h-10 rounded-full flex items-center justify-center text-gray-300 hover:text-white hover:bg-white/5 transition-all"
+            >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
@@ -72,6 +78,7 @@ export default function Header() {
       </div>
 
       <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+      <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
     </header>
   );
 }
