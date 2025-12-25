@@ -1,0 +1,65 @@
+@import "tailwindcss";
+@source "../**/*.{ts,tsx}";
+
+@font-face {
+  font-family: 'TT Travels Next Trl';
+  src: url('/fonts/tt-travels-next-trl-bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --color-background: #101010;
+  --color-foreground: #ffffff;
+  
+  --color-dark-100: #1a1a1a;
+  --color-dark-200: #0d0d0d;
+  --color-dark-300: #141414;
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+  --font-travels: 'TT Travels Next Trl', sans-serif;
+
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
+
+  /* Explicitly define spacing if default is not working */
+  /* This is a common issue with some Tailwind v4 environments */
+}
+
+:root {
+  --background: #101010;
+  --foreground: #ffffff;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
