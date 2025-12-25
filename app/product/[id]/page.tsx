@@ -18,7 +18,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
   const relatedProducts = products.filter(p => p.id !== product.id).slice(0, 4);
 
   return (
-    <div className="min-h-screen px-4 md:px-8 py-10">
+    <div className="min-h-screen px-4 md:px-8 pb-10">
       {/* Premium Main Container */}
       <div className="max-w-7xl mx-auto bg-[#101010] rounded-[60px] p-8 md:p-16 relative overflow-hidden border border-white/5 shadow-2xl">
         {/* Dot Pattern Background */}
@@ -225,23 +225,23 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
       </div>
 
         {/* Обзор */}
-        <div className="mb-12 md:mb-20">
-          <div className="flex items-center gap-4 mb-10">
-            <h2 className="text-4xl md:text-5xl font-bold font-travels text-[#DFDFDF]">Обзор</h2>
-            <span className="text-4xl md:text-5xl font-light text-white/10 font-travels">/</span>
+        <div className="mb-10 md:mb-16">
+          <div className="flex items-center gap-4 mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold font-travels text-[#DFDFDF]">Обзор</h2>
+            <span className="text-3xl md:text-4xl font-light text-white/10 font-travels">/</span>
           </div>
-          <div className="relative overflow-hidden bg-[#161616] rounded-[40px] p-8 md:p-12 border border-white/5">
+          <div className="relative overflow-hidden bg-[#161616] rounded-[32px] md:rounded-[40px] p-6 md:p-10 border border-white/5">
             {/* Dot Pattern Background */}
             <div 
               className="absolute inset-0 opacity-[0.02] pointer-events-none" 
-              style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '20px 20px' }} 
+              style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '16px 16px' }} 
             />
-            <div className="relative z-10 space-y-6">
-              <p className="text-xl md:text-2xl font-light font-travels text-[#DFDFDF]/60 leading-relaxed">
+            <div className="relative z-10 space-y-4">
+              <p className="text-base md:text-lg font-light font-travels text-[#DFDFDF]/60 leading-relaxed">
                 {product.name} — это революционное устройство от Apple, которое сочетает в себе передовые технологии и элегантный дизайн. 
                 Созданный для тех, кто ценит качество и производительность, этот продукт станет вашим надежным спутником в повседневной жизни.
               </p>
-              <p className="text-xl md:text-2xl font-light font-travels text-[#DFDFDF]/60 leading-relaxed">
+              <p className="text-base md:text-lg font-light font-travels text-[#DFDFDF]/60 leading-relaxed">
                 Благодаря мощному процессору, великолепному дисплею и продолжительному времени автономной работы, 
                 вы сможете наслаждаться всеми возможностями современных технологий без компромиссов.
               </p>
@@ -250,18 +250,18 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
         </div>
 
         {/* Характеристики */}
-        <div className="mb-12 md:mb-20">
-          <div className="flex items-center gap-4 mb-10">
-            <h2 className="text-4xl md:text-5xl font-bold font-travels text-[#DFDFDF]">Характеристики</h2>
-            <span className="text-4xl md:text-5xl font-light text-white/10 font-travels">/</span>
+        <div className="mb-10 md:mb-16">
+          <div className="flex items-center gap-4 mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold font-travels text-[#DFDFDF]">Характеристики</h2>
+            <span className="text-3xl md:text-4xl font-light text-white/10 font-travels">/</span>
           </div>
-          <div className="relative overflow-hidden bg-[#161616] rounded-[40px] p-8 md:p-12 border border-white/5">
+          <div className="relative overflow-hidden bg-[#161616] rounded-[32px] md:rounded-[40px] p-6 md:p-10 border border-white/5">
             {/* Dot Pattern Background */}
             <div 
               className="absolute inset-0 opacity-[0.02] pointer-events-none" 
-              style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '20px 20px' }} 
+              style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '16px 16px' }} 
             />
-            <div className="relative z-10 grid md:grid-cols-2 gap-x-16 gap-y-4">
+            <div className="relative z-10 grid md:grid-cols-2 gap-x-12 gap-y-2">
               {[
                 { label: 'Процессор', value: 'Apple M2 / A16 Bionic' },
                 { label: 'Дисплей', value: 'Super Retina XDR' },
@@ -270,9 +270,9 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                 { label: 'Операционная система', value: 'iOS 17 / macOS Sonoma' },
                 { label: 'Вес', value: '206 г / 1.24 кг' },
               ].map((spec, i) => (
-                <div key={i} className="flex justify-between py-6 border-b border-white/5 group hover:border-white/10 transition-colors">
-                  <span className="text-lg md:text-xl font-medium font-travels text-[#DFDFDF]/30 group-hover:text-[#DFDFDF]/50 transition-colors">{spec.label}</span>
-                  <span className="text-lg md:text-xl font-bold font-travels text-[#DFDFDF]">{spec.value}</span>
+                <div key={i} className="flex justify-between py-4 border-b border-white/5 group hover:border-white/10 transition-colors">
+                  <span className="text-base md:text-lg font-medium font-travels text-[#DFDFDF]/30 group-hover:text-[#DFDFDF]/50 transition-colors">{spec.label}</span>
+                  <span className="text-base md:text-lg font-bold font-travels text-[#DFDFDF]">{spec.value}</span>
                 </div>
               ))}
             </div>
