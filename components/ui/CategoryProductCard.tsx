@@ -10,16 +10,19 @@ export default function CategoryProductCard({ product }: CategoryProductCardProp
   return (
     <div className="bg-[#161616] rounded-[48px] p-6 flex flex-col h-full border border-white/5 group transition-all hover:border-white/10">
       {/* Product Image */}
-      <div className="relative aspect-square w-full mb-8 flex items-center justify-center p-4">
-        <div className="relative w-full h-full transform transition-transform duration-500 group-hover:scale-105">
-          <Image
-            src={product.image}
-            alt={product.name}
-            fill
-            className="object-contain"
-          />
+
+      <Link href={`/product/${product.id}`} className="block">
+        <div className="relative aspect-square w-full mb-8 flex items-center justify-center p-4">
+          <div className="relative w-full h-full transform transition-transform duration-500 group-hover:scale-105">
+            <Image
+              src={product.image}
+              alt={product.name}
+              fill
+              className="object-contain"
+            />
+          </div>
         </div>
-      </div>
+      </Link>
 
       {/* Product Info */}
       <div className="flex-grow space-y-2 mb-4">
