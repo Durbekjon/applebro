@@ -20,7 +20,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
   return (
     <div className="min-h-screen px-4 md:px-8 pb-10">
       {/* Premium Main Container */}
-      <div className="max-w-7xl mx-auto bg-[#101010] rounded-[60px] p-8 md:p-16 relative overflow-hidden border border-white/5 shadow-2xl">
+      <div className="mb-10 md:mb-16 max-w-7xl mx-auto bg-[#101010] rounded-[60px] p-8 md:p-16 relative overflow-hidden border border-white/5 shadow-2xl">
         {/* Dot Pattern Background */}
         <div 
           className="absolute inset-0 opacity-[0.03] pointer-events-none" 
