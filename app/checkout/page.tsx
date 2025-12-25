@@ -3,11 +3,13 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import OrderSuccessModal from '@/components/ui/OrderSuccessModal';
 
 export default function CheckoutPage() {
   const [shippingMethod, setShippingMethod] = useState<'delivery' | 'pickup'>('delivery');
   const [paymentMethod, setPaymentMethod] = useState<'card' | 'cash'>('cash');
   const [sameAsShipping, setSameAsShipping] = useState(true);
+  const [isSuccessOpen, setIsSuccessOpen] = useState(false);
 
   const cartItems = [
     {
@@ -223,7 +225,10 @@ export default function CheckoutPage() {
               </div>
             </section>
 
-            <button className="w-full h-16 rounded-[24px] bg-gradient-to-r from-[#6B2DE3] to-[#C292C9] text-white font-bold font-travels text-lg md:text-xl shadow-2xl shadow-purple-900/40 hover:brightness-110 active:scale-[0.98] transition-all">
+            <button 
+              onClick={() => setIsSuccessOpen(true)}
+              className="w-full h-16 rounded-[24px] bg-gradient-to-r from-[#6B2DE3] to-[#C292C9] text-white font-bold font-travels text-lg md:text-xl shadow-2xl shadow-purple-900/40 hover:brightness-110 active:scale-[0.98] transition-all"
+            >
               Оформить заказ
             </button>
           </div>
@@ -301,6 +306,8 @@ export default function CheckoutPage() {
           </aside>
         </div>
       </div>
+
+      <OrderSuccessModal isOpen={isSuccessOpen} onClose={() => setIsSuccessOpen(false)} />
     </div>
   );
 }
