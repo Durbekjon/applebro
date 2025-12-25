@@ -1,19 +1,10 @@
 'use client';
 
-import { useState } from 'react';
-import ProductCard from '@/components/ui/ProductCard';
 import CategoryProductCard from '@/components/ui/CategoryProductCard';
 import { products } from '@/data/products';
 
-const filters = {
-  payment: ['Наличными', 'Картой', 'Рассрочка'],
-  category: ['Смартфоны', 'Планшеты', 'Ноутбуки', 'Умные часы', 'Наушники', 'Аксессуары'],
-  storage: ['64 GB', '128 GB', '256 GB', '512 GB', '1 TB'],
-  color: ['Space Black', 'Silver', 'Space Gray', 'Starlight', 'Midnight', 'Purple', 'Blue'],
-};
 
 export default function CategoriesPage() {
-  const [selectedFilters, setSelectedFilters] = useState<Record<string, string[]>>({});
 
   return (
     <div className="min-h-screen">
