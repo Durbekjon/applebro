@@ -1,10 +1,47 @@
 @import "tailwindcss";
 @source "../**/*.{ts,tsx}";
 
+/* TT Travels Next Trl - Bold (mavjud fayl) */
 @font-face {
   font-family: 'TT Travels Next Trl';
   src: url('/fonts/tt-travels-next-trl-bold.ttf') format('truetype');
-  font-weight: bold;
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* TT Travels Next Trl - Black (bold fayl orqali) */
+@font-face {
+  font-family: 'TT Travels Next Trl';
+  src: url('/fonts/tt-travels-next-trl-bold.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* TT Travels Next Trl - Medium (bold fayl orqali) */
+@font-face {
+  font-family: 'TT Travels Next Trl';
+  src: url('/fonts/tt-travels-next-trl-bold.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Gotham Pro - fallback uchun */
+@font-face {
+  font-family: 'Gotham Pro';
+  src: url('/fonts/tt-travels-next-trl-bold.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* TT Travels Next Trial Variable - fallback uchun */
+@font-face {
+  font-family: 'TT Travels Next Trial Variable';
+  src: url('/fonts/tt-travels-next-trl-bold.ttf') format('truetype');
+  font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
@@ -19,6 +56,7 @@
 
   --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
   --font-travels: 'TT Travels Next Trl', sans-serif;
+  --font-gotham: 'Gotham Pro', -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
 
   --radius-2xl: 1rem;
   --radius-3xl: 1.5rem;
