@@ -82,7 +82,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
         title: p.name,
         type: 'Product',
         href: `/product/${p.id}`,
-        image: p.images[0]
+        image: p.image
       }));
 
     // Navigation matches
@@ -147,11 +147,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
                   onMouseEnter={() => setSelectedIndex(index)}
                 >
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center border border-white/5 ${result.type === 'Product' ? 'bg-white/5' : 'bg-[#1a1a1a]'}`}>
-                    {result.image ? (
-                        <div className="relative w-8 h-8">
-                             <Image src={result.image} alt={result.title} fill className="object-contain" />
-                        </div>
-                    ) : (
+                    
                       <svg className="w-5 h-5 text-[#DFDFDF]/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         {result.type === 'Navigation' ? (
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -159,7 +155,6 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                         )}
                       </svg>
-                    )}
                   </div>
                   <div className="flex-1">
                     <h4 className={`text-base font-medium font-travels transition-colors ${index === selectedIndex ? 'text-white' : 'text-[#DFDFDF]'}`}>
