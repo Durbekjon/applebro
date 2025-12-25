@@ -30,7 +30,7 @@ export default function HeroSection({
       className='p-8 '
     >
       <div
-      className="max-w-7xl mx-auto px-4 rounded-[50px]  flex flex-col items-center justify-center relative overflow-hidden px-4 py-8 md:py-20"
+      className="max-w-7xl mx-auto px-4 rounded-[50px]  flex flex-col items-center justify-center relative overflow-hidden px-4 py-8 md:py-16"
       style={{
         background: '#1a1a1a',
         backgroundImage: `radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)`,
@@ -56,7 +56,7 @@ export default function HeroSection({
             className="
               mb-2 md:mb-4 select-none uppercase text-white
               font-extrabold
-              text-[48px] sm:text-[64px] md:text-[96px] lg:text-[128px]
+              text-[40px] sm:text-[56px] md:text-[80px] lg:text-[100px]
               leading-[0.9]
               tracking-[0]
               px-4
@@ -72,9 +72,9 @@ export default function HeroSection({
           {/* Subheading */}
           <p
             className="
-              mb-4 md:mb-8 text-white
+              mb-4 md:mb-6 text-white
               font-medium
-              text-[20px] sm:text-[28px] md:text-[36px] lg:text-[40px]
+              text-[18px] sm:text-[24px] md:text-[30px] lg:text-[32px]
               leading-[0.9]
               tracking-[0]
               text-center
@@ -102,17 +102,17 @@ export default function HeroSection({
             <Link href={buttonLink}>
               <Button
                 className="
-                  hover:opacity-90 transition-opacity mb-8 md:mb-16
-                  w-full h-[64px]
-                  rounded-[20px]
-                  px-[90px] py-[10px]
+                  hover:opacity-90 transition-opacity mb-8 md:mb-12
+                  w-full h-[56px]
+                  rounded-[18px]
+                  px-[60px] py-[8px]
                   flex justify-center items-center
                 "
                 style={{
                   background: 'linear-gradient(88.17deg, #6B2DE3 -33.68%, #C292C9 133.24%)',
                   fontFamily: "'TT Travels Next Trial Variable', sans-serif",
                   fontWeight: 597,
-                  fontSize: '24px',
+                  fontSize: '20px',
                   lineHeight: '120%',
                   letterSpacing: '0%',
                 }}
