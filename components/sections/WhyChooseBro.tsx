@@ -18,7 +18,7 @@ export default function WhyChooseBro() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-center justify-start mb-16 gap-x-12 gap-y-4">
           <h2 className="text-5xl md:text-7xl font-bold font-travels text-white flex items-center gap-4 whitespace-nowrap">
-            Почему выбирают Pro Duct
+            Почему выбирают PROduct
             <span className="inline-block text-white/20 text-6xl md:text-9xl font-extralight transform -translate-y-2 select-none">
               \
             </span>

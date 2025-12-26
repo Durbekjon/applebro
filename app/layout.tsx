@@ -4,7 +4,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "Pro duct - Официальный магазин Apple в Узбекистане",
+  title: "PROduct - Официальный магазин Apple в Узбекистане",
   description: "Только оригинальная продукция Apple. iPhone, MacBook, iPad, AirPods, Apple Watch и аксессуары с доставкой по Узбекистану.",
 };
 
